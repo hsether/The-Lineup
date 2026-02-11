@@ -14,10 +14,9 @@
       color:#0f172a;
       background:#ffffff;
     }
-
     .wrap{ max-width: 980px; margin: 0 auto; }
 
-    /* --- Cards grid --- */
+    /* --- Grid --- */
     .grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -25,15 +24,30 @@
       margin-bottom: 18px;
     }
 
-    .card{
-      background:#ffffff;
-      border:1px solid #e5e7eb;
-      border-radius:12px;
-      padding:18px 18px;
+    /* --- Clickable card (anchor) --- */
+    .card-link{
       display:flex;
       gap:14px;
       align-items:flex-start;
+      padding:18px 18px;
       min-height: 92px;
+
+      background:#ffffff;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+
+      text-decoration:none;
+      color: inherit;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .card-link:hover{
+      transform: translateY(-1px);
+      border-color:#cbd5e1;
+      box-shadow: 0 8px 20px rgba(15,23,42,.08);
+    }
+    .card-link:focus-visible{
+      outline: 3px solid rgba(37,99,235,.35);
+      outline-offset: 2px;
     }
 
     .icon{
@@ -51,39 +65,49 @@
     }
     .icon img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    .card h4{
+    .card-content h4{
       margin: 2px 0 6px;
       font-size:18px;
       font-weight:700;
       color:#2563eb;
     }
-
-    .card p{
+    .card-content p{
       margin:0;
       font-size:14.5px;
       line-height:1.55;
       color:#64748b;
     }
 
-    /* --- Highlighted “Ghost Human Baseline” --- */
+    /* --- Highlight card --- */
     .baseline{
-      grid-column: 1 / 2;              /* sits on left, like screenshot */
-      background:#d1fae5;               /* soft green */
-      border:2px solid #22c55e;         /* green outline */
+      grid-column: 1 / 2;
+      background:#d1fae5;
+      border:2px solid #22c55e;
       border-radius:12px;
       padding:18px 18px;
       display:flex;
       gap:14px;
       align-items:flex-start;
       min-height: 110px;
+      text-decoration:none;
+      color: inherit;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .baseline:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(15,23,42,.08);
+    }
+    .baseline:focus-visible{
+      outline: 3px solid rgba(34,197,94,.35);
+      outline-offset: 2px;
     }
     .baseline .icon{
       background:#eafff4;
       border-color:#b7f7d6;
     }
-    .baseline h4{ color:#2563eb; }
+    .baseline .card-content h4{ color:#2563eb; }
 
-    /* --- Disqualified callout --- */
+    /* --- Callout --- */
     .callout{
       margin-top: 22px;
       background:#fff3c6;
@@ -104,7 +128,6 @@
       font-size:15px;
     }
 
-    /* Responsive */
     @media (max-width: 820px){
       .grid{ grid-template-columns: 1fr; }
       .baseline{ grid-column: auto; }
@@ -116,61 +139,62 @@
   <div class="wrap">
 
     <section class="grid" aria-label="Model cards">
-      <div class="card">
+      <a class="card-link" href="https://www.midjourney.com" target="_blank" rel="noopener">
         <div class="icon">MJ</div>
-        <div>
+        <div class="card-content">
           <h4>Midjourney</h4>
           <p>The one I tortured extensively back in 2024. History matters.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <a class="card-link" href="https://openai.com/sora" target="_blank" rel="noopener">
         <div class="icon">So</div>
-        <div>
+        <div class="card-content">
           <h4>Sora</h4>
           <p>OpenAI's video-to-image darling. Finally taking visuals seriously.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <a class="card-link" href="https://ai.google" target="_blank" rel="noopener">
         <div class="icon">G</div>
-        <div>
+        <div class="card-content">
           <h4>Gemini / Nano Banana</h4>
           <p>Google's offering, apparently named by someone who lost a bet.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <a class="card-link" href="https://x.ai" target="_blank" rel="noopener">
         <div class="icon">Gr</div>
-        <div>
+        <div class="card-content">
           <h4>Grok</h4>
           <p>Best known for making Elon Musk memes. We'll give it a shot anyway.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <a class="card-link" href="#" target="_blank" rel="noopener">
         <div class="icon">F2</div>
-        <div>
+        <div class="card-content">
           <h4>Flux 2</h4>
           <p>The model that every AI enthusiast insists will "totally nail medical accuracy this time."</p>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <a class="card-link" href="#" target="_blank" rel="noopener">
         <div class="icon">AI</div>
-        <div>
+        <div class="card-content">
           <h4>AIMAGE</h4>
           <p>Ghost's own AI medical image generator, trained on thousands of Ghost-created illustrations. Domain-tuned, not vibes-tuned.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="baseline">
+      <!-- Ghost Human Baseline also clickable (optional) -->
+      <a class="baseline" href="#" target="_blank" rel="noopener" aria-label="Ghost Human Baseline link">
         <div class="icon">GH</div>
-        <div>
+        <div class="card-content">
           <h4>Ghost Human Baseline</h4>
           <p>Made by actual humans using Maya, Redshift, Photoshop, Houdini, Substance, and about a dozen other tools that reward anatomical knowledge over clever prompting.</p>
         </div>
-      </div>
+      </a>
     </section>
 
     <section class="callout" aria-label="Stable Diffusion disqualified">
@@ -181,8 +205,8 @@
         Until this AI matures enough to realize that nothing is offensive about medically accurate imagery, we won't even consider it.
       </p>
     </section>
-
   </div>
 <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.9/js/iframeResizer.contentWindow.min.js"></script>
 </body>
 </html>
+
